@@ -1,0 +1,670 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#"> <b>Social</b>Network </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="navbarContent"
+      [attr.aria-expanded]="!collapsed"
+      aria-label="Toggle navigation"
+      (click)="collapsed = !collapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <form class="form-inline my-2 my-lg-0 w-100 mr-2">
+      <div class="input-group w-100">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <div class="input-group-append bg-white">
+          <span class="input-group-text bg-white" id="basic-addon2">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+    </form>
+
+    <button
+      class="btn btn-success my-2 my-sm-0 mx-3 d-inline-block"
+      type="button"
+    >
+      <!-- <i class="fas fa-upload d-inline-block"></i> -->
+      <span class="d-inline-block">Upload</span>
+    </button>
+
+    <div
+      class="navbar-collapse"
+      [class.collapse]="collapsed"
+      id="navbarContent"
+    >
+      <ul class="navbar-nav ml-auto">
+        <li
+          class="nav-item"
+          ngbDropdown
+          display="dynamic"
+          placement="bottom-right"
+        >
+          <a
+            class="nav-link"
+            tabindex="0"
+            ngbDropdownToggle
+            id="navbarDropdown3"
+            role="button"
+          >
+            <img
+              width="30"
+              src="data:image/png;base64,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"
+              class="rounded-circle"
+            />
+            N. Cahyo
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="row-fluid">
+    <div class="col-12 p-0 px-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li
+            class="breadcrumb-item pointer"
+            *ngFor="let category of categories"
+          >
+            <a>{{ category }}</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 p-0">
+      <div class="row-fluid">
+        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+          <div class="row-fluid justify-content-between">
+            <h3 class="my-auto">Videos</h3>
+            <small class="my-auto pointer">
+              <b>Browse all videos</b>
+            </small>
+          </div>
+        </div>
+
+        <div
+          class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 p-0 p-2 my-auto"
+        >
+          <div class="row-fluid">
+            <div class="col-12 p-0">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[0]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[0]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0">
+          <div class="row-fluid">
+            <div class="col-12 p-0 p-2">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[1]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[1]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 p-0 p-2">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[2]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[2]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 p-0 pt-2">
+          <div class="row-fluid">
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[3]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[3]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[4]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[4]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[5]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[5]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-fluid mt-5">
+        <div class="col-8">
+          <div class="row-fluid justify-content-between">
+            <h3 class="my-auto">People</h3>
+            <small class="my-auto pointer">
+              <b>View all</b>
+            </small>
+          </div>
+        </div>
+
+        <div
+          class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 p-0 p-2 my-auto"
+        >
+          <div class="row-fluid">
+            <div class="col-12 p-0">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[0]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[0]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0">
+          <div class="row-fluid">
+            <div class="col-12 p-0 p-2">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[1]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[1]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 p-0 p-2">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[2]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[2]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 p-0 pt-2">
+          <div class="row-fluid">
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[3]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[3]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[4]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[4]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[5]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[5]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-fluid mt-5">
+        <div class="col-8">
+          <div class="row-fluid justify-content-between">
+            <h3 class="my-auto">Documents</h3>
+            <small class="my-auto pointer">
+              <b>Browse all documents</b>
+            </small>
+          </div>
+        </div>
+
+        <div
+          class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 p-0 p-2 my-auto"
+        >
+          <div class="row-fluid">
+            <div class="col-12 p-0">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[0]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[0]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0">
+          <div class="row-fluid">
+            <div class="col-12 p-0 p-2">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[1]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[1]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 p-0 p-2">
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[2]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[2]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 p-0 pt-2">
+          <div class="row-fluid">
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[3]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[3]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[4]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[4]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0 px-2 pb-xl-0 pb-lg-0 pb-md-3 pb-sm-3 pb-3"
+            >
+              <div style="position: relative" class="w-100">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: aqua"
+                >
+                  <img [src]="posts[5]?.imageUrl" class="h-100" />
+                </div>
+
+                <div
+                  class="p-2 text-white"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6>{{ posts[5]?.title }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+      <div class="row-fluid">
+        <div class="col-12 pb-2">
+          <div class="row-fluid justify-content-between medium-border-bottom">
+            <h3 class="my-auto pb-2">Activity</h3>
+            <small class="my-auto pb-2 pointer">
+              <b>View time line / Filter activities</b>
+            </small>
+          </div>
+        </div>
+        <div class="col-12 pt-2">
+          <div class="row-fluid mt-2" *ngFor="let post of posts">
+            <div class="col-4 p-0">
+              <div class="container-ratio-4x3 img-container">
+                <img [src]="post?.imageUrl" class="w-100" />
+              </div>
+            </div>
+            <div class="col-8 p-0 pl-2">
+              <h5 class="my-auto">{{ post?.title | slice: 0:15 }}...</h5>
+              <small>{{ post?.summary | slice: 0:25 }}</small>
+              <p class="my-auto">
+                <i class="fas fa-clock mr-2"></i>
+                <small>{{ post?.updatedAt | date: "short" }}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-fluid mt-5">
+        <div class="col-12 pb-2">
+          <div class="row-fluid justify-content-between medium-border-bottom">
+            <h3 class="my-auto pb-2">Channels</h3>
+            <small class="my-auto pb-2 pointer">
+              <b>Browse all channels</b>
+            </small>
+          </div>
+        </div>
+        <div class="col-12 pt-2">
+          <div class="row-fluid mt-2">
+            <div class="col-6 p-0 p-1" *ngFor="let post of posts">
+              <div style="position: relative" style="height: 100px">
+                <div
+                  class="container-ratio-4x3 img-container"
+                  style="background-color: #e0e0e0; position: absolute"
+                >
+                  <img [src]="post?.imageUrl" class="w-100" />
+                </div>
+                <div
+                  class="p-2 text-white w-100"
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    background-color: #e0e0e050;
+                  "
+                >
+                  <h6 class="m-0">{{ post?.title | slice: 0:20 }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-5 pt-4 medium-border-top" style="margin-bottom: 50px">
+    <div class="row-fluid mb-4">
+      <button class="btn btn-primary mr-2">
+        <i class="fab fa-twitter"></i>
+      </button>
+
+      <button class="btn btn-primary mr-2">
+        <i class="fab fa-linkedin"></i>
+      </button>
+
+      <button class="btn btn-primary mr-2">
+        <i class="fab fa-facebook"></i>
+      </button>
+    </div>
+
+    <span class="pointer">
+      <a>About</a> / <a>For Bussines</a> / <a>Suggestions</a> /
+      <a>Help & FAQs</a> / <a>Contacts</a> /
+      <a>Pricing</a>
+    </span>
+
+    <p class="mt-3">
+      <b>© Copyright 2013 company name inc.</b>
+    </p>
+
+    <span class="pointer"> <a>Privacy</a> / <a>Terms</a> </span>
+  </footer>
+</div>
